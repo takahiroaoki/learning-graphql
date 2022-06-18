@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api:
+    image: node:16.13.1
+    volumes:
+      - ./api:/api
+      # Volume trick in order to solve the slowness of webpack
+      - /api/node_modules
+    working_dir: /api
+    ports:
+      - 4000:4000
+    entrypoint: "/bin/sh -c 'npm ci && npm start'"
+    tty: true
