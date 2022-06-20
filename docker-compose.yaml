@@ -8,10 +8,8 @@ services:
       # Volume trick in order to solve the slowness of webpack
       - /app/node_modules
     working_dir: /app
-    environment:
-      - DB_HOST=mongodb://db:27017/learning-graphql-db
-      - CLIENT_ID=<your client id>
-      - CLIENT_SECRET=<your client secret>
+    env_file:
+      - ./app.env
     ports:
       - 4000:4000
     entrypoint: "/bin/sh -c 'npm ci && npm start'"
