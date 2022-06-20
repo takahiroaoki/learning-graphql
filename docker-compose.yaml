@@ -1,14 +1,25 @@
 version: '3.8'
 
 services:
-  api:
+  app:
     image: node:16.13.1
     volumes:
-      - ./api:/api
+      - ./app:/app
       # Volume trick in order to solve the slowness of webpack
-      - /api/node_modules
-    working_dir: /api
+      - /app/node_modules
+    working_dir: /app
+    environment:
+      - DB_HOST=mongodb://db:27017/learning-graphql-db
+      - CLIENT_ID=<your client id>
+      - CLIENT_SECRET=<your client secret>
     ports:
       - 4000:4000
     entrypoint: "/bin/sh -c 'npm ci && npm start'"
+    depends_on:
+      - db
     tty: true
+  db:
+    image: mongo:5.0.9
+    container_name: learning-graphql-db
+    ports:
+      - 27017:27017
