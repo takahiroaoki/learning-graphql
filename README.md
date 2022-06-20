@@ -14,7 +14,10 @@
 
 ## 動作確認
 
-1. 本プロジェクトのディレクトリで、以下のコマンドを実行し、コンテナを起動します。
+1. ./app.envファイル内の環境変数を設定してください。
+CLIENT_ID, CLIENT_SECRETはGitHubのSettings > Developer settings > OAuth Appsから設定できます。
+
+2. 本プロジェクトのディレクトリで、以下のコマンドを実行し、コンテナを起動します。
 
 ```
 $ docker-compose up -d
